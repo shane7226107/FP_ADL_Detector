@@ -32,16 +32,16 @@ string Haar_cascade::get_name(){
 int Haar_cascade::detect(string img,int min,int max){
     
         
-    cout << name <<">>Detection begins..."<<endl;
+    //cout << name <<">>Detection begins..."<<endl;
     
     min_obj_size.height = min_obj_size.width = min;
     max_obj_size.height = max_obj_size.width = max;
     IplImage* pImg = cvLoadImage( img.c_str(), 1);
-    cout << "Image loaded..." <<endl;
-    cout << "Running detection..." <<endl;
+    //cout << "Image loaded..." <<endl;
+    //cout << "Running detection..." <<endl;
     int num_of_detection = (int)runDetection(pImg).size();  
     cvReleaseImage( &pImg );
-    cout << "Image released..." <<endl;
+    //cout << "Image released..." <<endl;
     
     return num_of_detection;
 }
@@ -49,12 +49,11 @@ int Haar_cascade::detect(string img,int min,int max){
 vector<Rect> Haar_cascade::detect(IplImage* image_detect,int min,int max){
     
     
-    cout << "Detection begins..." <<endl;
+    //cout << "Detection begins..." <<endl;
     
     min_obj_size.height = min_obj_size.width = min;
     max_obj_size.height = max_obj_size.width = max;
     
-    cout << "Running detection..." <<endl;
     //int num_of_detection = (int)runDetection(image_detect).size();  
     
     
@@ -91,7 +90,7 @@ vector<Rect> Haar_cascade::runDetection(IplImage* image_detect)
     vector<Rect> result_list;
     
     //Run detection
-    cout << "Run detection at min_size:"<< min_obj_size.width <<" max_size:"<<max_obj_size.width<<endl;
+    //cout << "Run detection at min_size:"<< min_obj_size.width <<" max_size:"<<max_obj_size.width<<endl;
     start_time = clock();
     myClassifier.detectMultiScale(img, result_list,1.02,3,0,min_obj_size,max_obj_size);
     end_time = clock();
@@ -99,7 +98,7 @@ vector<Rect> Haar_cascade::runDetection(IplImage* image_detect)
     //cout << CLOCKS_PER_SEC << endl;
     cout << "Detection took:" << total_time << " seconds\n";
     
-    cout << "Number of detections:" << result_list.size() << endl;
+    //cout << "Number of detections:" << result_list.size() << endl;
     
     /*
      show result only when we got detection

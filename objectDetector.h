@@ -16,7 +16,7 @@
 #include "frames.h"
 
 #define MAX_DETECTION_BOX 600
-#define MIN_DETECTION_BOX 100
+#define MIN_DETECTION_BOX 200
 
 using namespace std;
 
@@ -31,7 +31,7 @@ public:
     int num_of_detectors;
     
     //public functions
-    bool detect(FrameModel* frames);
+    bool detect(FrameModel* frame_model , int frame_index ,IplImage* image);
     
     //constructor
 	ObjectDetector();
@@ -40,12 +40,6 @@ public:
 private:
     
     vector<Haar_cascade> myHaars;
-    /*
-    Haar_cascade active_beverage_cascade = Haar_cascade("cascade_active_beverage.xml");
-    Haar_cascade active_laptop_cascade = Haar_cascade("cascade_active_laptop.xml");
-    Haar_cascade active_mug_cascade = Haar_cascade("cascade_active_mug.xml");
-    Haar_cascade active_water_dispenser_cascade = Haar_cascade("cascade_active_water_dispenser.xml");
-     */
 };
 
 

@@ -70,6 +70,7 @@ bool  TemporalPyramid::showPyramid(int level_index){
         for (int j = 0; j < pyramid[level_index][i].feature.size() ; j++) {
             cout << pyramid[level_index][i].feature[j] <<" "; 
         }
+        cout << " | ";
     }
     cout << "\n";
     
@@ -101,7 +102,7 @@ bool TemporalPyramid::buildPyramid(int level_required){
             
             //In case the number of nodes in the last level is not even
             if (n+1 < pyramid[level-1].size()) {
-                //Summing node features in a interval(2 nodes)
+                //Summing node features in a interval and avrage them(2 nodes)
                 for (int k = 0; k < num_of_features; k++) {
                     tmp_node.feature[k] = (tmp_node.feature[k] + pyramid[level-1][n+1].feature[k])/2;
                 }

@@ -25,26 +25,26 @@ ObjectDetector::~ObjectDetector(){
 }
 
 /*
-    Batch frame detection
-    LARGE memory usage
+ Single frame detection
  */
-bool ObjectDetector::detect(FrameModel* frames){
+bool ObjectDetector::detect(FrameModel* frame_model , int frame_index ,IplImage* image){
     
-    name_of_frames = frames->name;
+    name_of_frames = frame_model->name;
     
-    frames->num_features = (int)myHaars.size();//Equal to num of object detectors
+    if( frame_index == 0)//If this is the first detection
+        frame_model->num_features = (int)myHaars.size();//Equal to num of object detectors
     
     //Detection using the cascades in myHaars
-    for (int cls = 0 ; cls < frames->num_features ; cls ++){
+    for (int cls = 0 ; cls < frame_model->num_features ; cls ++){
         
-        frames->feature_name.push_back(myHaars[cls].name);
-        for (int i = 0 ; i < frames->frameList.size() ; i ++){
+        if( frame_index == 0)
+            frame_model->feature_name.push_back(myHaars[cls].name);//If this is the first detection
             
-            cout << "detecting:" << i << "/" << frames->frameList.size()-1 << endl; 
-            vector<Rect> result_list = myHaars[cls].detect(frames->frameList[i].frame,MIN_DETECTION_BOX,MAX_DETECTION_BOX);
-            frames->frameList[i].feature.push_back(result_list.size());
-            frames->frameList[i].result_list.push_back(result_list);
-        }
+        //cout << "detecting:" <<<< "/" << frame_model->frameList.size()-1 << endl; 
+        vector<Rect> result_list = myHaars[cls].detect(image,MIN_DETECTION_BOX,MAX_DETECTION_BOX);
+        frame_model->frameList[frame_index].feature.push_back(result_list.size());
+        frame_model->frameList[frame_index].result_list.push_back(result_list);
+        
         
     }
     

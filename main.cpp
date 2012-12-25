@@ -25,30 +25,20 @@ int main (int argc, const char * argv[])
     /*
      Components initializtion
      */
-    FrameModel myFrames;
-    TemporalPyramid myTemporalPyramid;
-    ObjectDetector myObjectDetector;
-    
+    FrameModel* myFrames = new FrameModel();
+    TemporalPyramid* myTemporalPyramid = new TemporalPyramid();    
     
     /*
-     Loading input video
+     Loading input video(feature detection included)
      */
-    //myFrames.loadVideo(input_video,0,50);
-    myFrames.loadVideo(input_video);
-    //myFrames.playVideo();
-    cout << "Frames : " << myFrames.frame_count << endl;
-    
-    
-    /*
-     Detecting features in each frame
-     */
-    myObjectDetector.detect(&myFrames);
+    myFrames->loadVideo(input_video);
+    cout << "Frames : " << myFrames->frame_count << endl;
     
     /*
      Show detection result
      */
     /*
-    myFrames.feature_name.push_back("fake_mug");
+    myFrames.feature_name.push_back("fake_object");
     Rect fake;
     fake.x = 280;
     fake.y = 880;
@@ -57,17 +47,26 @@ int main (int argc, const char * argv[])
     myFrames.frameList[3].result_list[0].push_back(fake);
     */
     bool pause_when_detected = true;
-    myFrames.playVideo_with_detected_results(pause_when_detected);
+    myFrames->playVideo_with_detected_results(pause_when_detected);
     
     /*
      Building temporal pyramid
      */
     cout << "Building temporal pyramid\n";
-    myTemporalPyramid.loadFrames(&myFrames, myFrames.FPS);
-    myTemporalPyramid.showPyramid(0);
-    myTemporalPyramid.buildPyramid(2);
-    cout << "number of levels : " << myTemporalPyramid.num_of_levels << endl;
-    myTemporalPyramid.showPyramid(1);
+    myTemporalPyramid->loadFrames(myFrames, myFrames->FPS);
+    myTemporalPyramid->showPyramid(0);
+    myTemporalPyramid->buildPyramid(2);
+    cout << "number of levels : " << myTemporalPyramid->num_of_levels << endl;
+    myTemporalPyramid->showPyramid(1);
+    
+    
+    /*
+     Sampling
+     */
+    
+    
+    delete myFrames;
+    delete myTemporalPyramid;
     
     return 0;
 }

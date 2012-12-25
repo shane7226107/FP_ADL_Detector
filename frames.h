@@ -23,7 +23,7 @@ class frameNode{
 
 public:
     
-    IplImage* frame;
+    //IplImage* frame;
     vector<float> feature;
     vector< vector<Rect> > result_list;
 
@@ -39,6 +39,7 @@ public:
     string name;
     vector<frameNode> frameList;
     int FPS;
+    int frame_start;
     int frame_count;
     int num_frames;
     int num_features;
@@ -51,11 +52,14 @@ public:
     //public functions
     int getFPS();
     bool loadVideo(string path);
-    bool loadVideo(string path,int start , int end);//if end < 0 ,the whole video will be loaded
     bool playVideo();
     bool showFeature(int index);
-    bool showDetectionResult();
     bool playVideo_with_detected_results(bool pause_when_detected);
+    
+private:
+    string video_path;
+    
+    
 };
 
 #endif

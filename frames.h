@@ -26,6 +26,7 @@ public:
     //IplImage* frame;
     vector<float> feature;
     vector< vector<Rect> > result_list;
+    string activity;
 
 };
 

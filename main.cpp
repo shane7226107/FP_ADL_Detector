@@ -46,23 +46,25 @@ int main (int argc, const char * argv[])
     fake.height = 120;
     myFrames.frameList[3].result_list[0].push_back(fake);
     */
-    bool pause_when_detected = true;
-    myFrames->playVideo_with_detected_results(pause_when_detected);
+    bool pause_when_detected = false;
+    //myFrames->playVideo_with_detected_results(pause_when_detected);
     
     /*
      Building temporal pyramid
      */
     cout << "Building temporal pyramid\n";
-    myTemporalPyramid->loadFrames(myFrames, myFrames->FPS);
+    myTemporalPyramid->loadFrames(myFrames);
     myTemporalPyramid->showPyramid(0);
     myTemporalPyramid->buildPyramid(2);
     cout << "number of levels : " << myTemporalPyramid->num_of_levels << endl;
     myTemporalPyramid->showPyramid(1);
-    
+    myTemporalPyramid->activity_detect(myFrames);
     
     /*
      Sampling
      */
+    
+    
     
     
     delete myFrames;

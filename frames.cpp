@@ -48,6 +48,8 @@ bool FrameModel::loadVideo(string path){
     
     cvSetCaptureProperty( capture, CV_CAP_PROP_POS_FRAMES , start );
     
+    frameNode temp;
+    
     for(int i = 0 ; i < frame_count ; i ++)
     {   
         
@@ -57,10 +59,10 @@ bool FrameModel::loadVideo(string path){
         
         if(frame)
         {   
-            frameNode temp;
+            
             frameList.push_back(temp);
             //temp.frame = cvCloneImage(frame);
-            myObjDetector->detect(this, i, frame);            
+            myObjDetector->detect(this, i, frame);
             
         }
         else
@@ -69,7 +71,6 @@ bool FrameModel::loadVideo(string path){
         }
     }
     
-        
     cvReleaseCapture(&capture);
     
     delete myObjDetector;
@@ -145,14 +146,12 @@ bool FrameModel::playVideo_with_detected_results(bool pause_when_detected){
     for(unsigned int i = 0; i < frameList.size(); ++i){
         
         cout << "frameList index : " << i << endl;
+        tempFrame  = cvQueryFrame(capture);
         
         for(int feature_index = 0 ; feature_index < num_features ; feature_index ++)
         {   
             cout << "feature_index : " << feature_index << " " << feature_name[feature_index] << endl;
             cout << "num of detections : " << frameList[i].result_list[feature_index].size() << endl;
-                
-                tempFrame  = cvQueryFrame(capture);
-                //cvCopy(frameList[i].frame, tempFrame, 0);
                 
                 for (int box = 0 ; box < frameList[i].result_list[feature_index].size() ; box++){     
                     cout << "drawing bboxes : " << box << endl;

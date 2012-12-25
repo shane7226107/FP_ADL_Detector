@@ -33,7 +33,7 @@ public:
     CvSize max_obj_size;
     
     //constructor
-	Haar_cascade(string classifier_name);
+	Haar_cascade(string classifier_name , string feature_name);
 	~Haar_cascade();
     
     //public functions

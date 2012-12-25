@@ -9,9 +9,9 @@
 #include <iostream>
 #include "haar_cascade.h"
 
-Haar_cascade::Haar_cascade(string classifier_name){
+Haar_cascade::Haar_cascade(string classifier_name , string feature_name){
     
-    name = "Haar_cascade";
+    name = feature_name;
     //classifier_name = "mug_cascade.xml";
 
     // Create classifier object 
@@ -32,7 +32,7 @@ string Haar_cascade::get_name(){
 int Haar_cascade::detect(string img,int min,int max){
     
         
-    cout << "Detection begins..." <<endl;
+    cout << name <<">>Detection begins..."<<endl;
     
     min_obj_size.height = min_obj_size.width = min;
     max_obj_size.height = max_obj_size.width = max;

@@ -47,6 +47,7 @@ int main (int argc, const char * argv[])
     /*
      Show detection result
      */
+    /*
     myFrames.feature_name.push_back("fake_mug");
     Rect fake;
     fake.x = 280;
@@ -54,7 +55,9 @@ int main (int argc, const char * argv[])
     fake.width = 120;
     fake.height = 120;
     myFrames.frameList[3].result_list[0].push_back(fake);
-    myFrames.playVideo_with_detected_results(false);
+    */
+    bool pause_when_detected = true;
+    myFrames.playVideo_with_detected_results(pause_when_detected);
     
     /*
      Building temporal pyramid

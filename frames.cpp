@@ -185,7 +185,7 @@ bool FrameModel::showDetectionResult(){
         
         for(int feature_index = 0 ; feature_index < num_features ; feature_index ++)
         {   
-            cout << "feature_index : " << feature_index << endl;
+            cout << "feature_index : " << feature_index << feature_name[feature_index] << endl;
             cout << "num of detections : " << frameList[i].result_list[feature_index].size() << endl;
             
             if(frameList[i].result_list[feature_index].size() > 0){
@@ -262,7 +262,7 @@ bool FrameModel::playVideo_with_detected_results(bool pause_when_detected){
         
         for(int feature_index = 0 ; feature_index < num_features ; feature_index ++)
         {   
-            cout << "feature_index : " << feature_index << endl;
+            cout << "feature_index : " << feature_index << " " << feature_name[feature_index] << endl;
             cout << "num of detections : " << frameList[i].result_list[feature_index].size() << endl;
                 
                 cvCopy(frameList[i].frame, tempFrame, 0);

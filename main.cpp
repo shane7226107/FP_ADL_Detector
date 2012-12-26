@@ -19,7 +19,17 @@ int main (int argc, const char * argv[])
         return 0;
     }
     string input_video = string(argv[1]);
+    bool do_activity_detection = false;
+    bool show_detection_result = false;
     cout  << "input video:" << input_video << endl;
+    
+    if (argc >= 3) {
+        show_detection_result  = true;
+    }
+    
+    if (argc >= 4) {
+        do_activity_detection  = true;
+    }
     
     
     /*
@@ -47,7 +57,8 @@ int main (int argc, const char * argv[])
     myFrames.frameList[3].result_list[0].push_back(fake);
     */
     bool pause_when_detected = false;
-    //myFrames->playVideo_with_detected_results(pause_when_detected);
+    if(show_detection_result)
+        myFrames->playVideo_with_detected_results(pause_when_detected);
     
     /*
      Building temporal pyramid
@@ -58,12 +69,13 @@ int main (int argc, const char * argv[])
     myTemporalPyramid->buildPyramid(2);
     cout << "number of levels : " << myTemporalPyramid->num_of_levels << endl;
     myTemporalPyramid->showPyramid(1);
-    myTemporalPyramid->activity_detect(myFrames);
+    
     
     /*
-     Sampling
+     Activity Detection
      */
-    
+    if(do_activity_detection)
+        myTemporalPyramid->activity_detect(myFrames);
     
     
     

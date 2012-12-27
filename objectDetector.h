@@ -15,7 +15,7 @@
 #include "haar_cascade.h"
 #include "frames.h"
 
-#define MAX_DETECTION_BOX 600
+#define MAX_DETECTION_BOX 1000
 #define MIN_DETECTION_BOX 200
 
 using namespace std;

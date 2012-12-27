@@ -189,7 +189,9 @@ bool FrameModel::playVideo_with_detected_results(bool pause_when_detected){
                  */
                 cvShowImage("Obj Detection Result", dst);
                 if(pause_when_detected && frameList[i].result_list[feature_index].size() > 0)
-                    cvWaitKey(0);  
+                    cvWaitKey(0);
+            
+                cvReleaseImage(&dst);
                 
             }
         
@@ -197,7 +199,7 @@ bool FrameModel::playVideo_with_detected_results(bool pause_when_detected){
             break;
     }
     
-    
+    //cvReleaseImage( &tempFrame );
     cvDestroyWindow("Obj Detection Result"); 
     
     cvReleaseCapture(&capture);

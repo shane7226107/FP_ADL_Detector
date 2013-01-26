@@ -1,0 +1,4 @@
+active_beverage	using_beverage
+active_mug	drinking_beverage
+active_mug	drinking_beverage
+

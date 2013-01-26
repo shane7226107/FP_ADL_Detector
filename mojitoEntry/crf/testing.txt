@@ -1,0 +1,7 @@
+active_mug
+active_beverage
+active_mug
+
+active_mug
+active_water_dispenser
+active_mug

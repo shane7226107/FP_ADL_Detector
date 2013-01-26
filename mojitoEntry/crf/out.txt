@@ -1,0 +1,8 @@
+active_mug	taking_cup
+active_beverage	using_beverage
+active_mug	drinking_beverage
+
+active_mug	taking_cup
+active_water_dispenser	using_water_dispenser
+active_mug	drinking_water
+

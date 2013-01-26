@@ -1,0 +1,25 @@
+[
+    {
+        "settings": [ "master" ],
+        "specs": {
+            "page":{
+                "type":"HTMLFrameMojit",
+                "config":{
+                    "deploy": true,
+                    "child":{
+                        "type":"myMojit",
+                        "config":{
+                            "deploy":false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "settings": [ "environment:development" ],
+        "staticHandling": {
+            "forceUpdate": true
+        }
+    }
+]

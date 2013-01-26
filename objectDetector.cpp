@@ -9,15 +9,25 @@
 #include "objectDetector.h"
 
 ObjectDetector::ObjectDetector(){
+    string path = HAAR_PATH;
+    path.append("cascade_active_beverage.xml");
     
-    Haar_cascade tmp = Haar_cascade("cascade_active_beverage.xml" , "active_beverage");
+    Haar_cascade tmp = Haar_cascade(path , "active_beverage");
     myHaars.push_back(tmp);
     
-    tmp = Haar_cascade("cascade_active_laptop.xml" , "active_laptop");
+    path = HAAR_PATH;
+    path.append("cascade_active_laptop.xml");
+    tmp = Haar_cascade(path , "active_laptop");
     myHaars.push_back(tmp);
-    tmp = Haar_cascade("cascade_active_mug.xml" , "active_mug");
+    
+    path = HAAR_PATH;
+    path.append("cascade_active_mug.xml");
+    tmp = Haar_cascade(path , "active_mug");
     myHaars.push_back(tmp);
-    tmp = Haar_cascade("cascade_active_water_dispenser.xml" , "active_water_dispenser");
+    
+    path = HAAR_PATH;
+    path.append("cascade_active_water_dispenser.xml");
+    tmp = Haar_cascade(path , "active_water_dispenser");
     myHaars.push_back(tmp);
 }
 

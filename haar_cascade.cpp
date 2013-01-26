@@ -134,6 +134,6 @@ vector<Rect> Haar_cascade::runDetection(IplImage* image_detect)
 
     }
      */
-    
+    cvReleaseImage(&tempFrame);
     return result_list;  
 }  

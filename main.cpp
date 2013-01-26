@@ -14,17 +14,24 @@ int main (int argc, const char * argv[])
     /*
      Input arguments checking
      argv[1] : video path
-     argv[2] : [show]show detection result , [show_result]show detection and pause when detected
+     argv[2] : [show]show detection result , [show_pause]show detection and pause when detected
      argv[3] : [crf]run CRF++ for activity recognition
+     argv[4] : start frame
+     argv[5] : end frame
      */
+    
     if (argv[1] == NULL){
         cout << "missing argv[1] : input video path\n";
         return 0;
     }
+    
     string input_video = string(argv[1]);
     bool do_activity_detection = false;
     bool show_detection_result = false;
     bool pause_when_detected = false;
+    int  start_frame = -1;
+    int  end_frame = -1;
+    
     cout  << "input video:" << input_video << endl;
     
     if (argc >= 3) {
@@ -42,6 +49,15 @@ int main (int argc, const char * argv[])
             do_activity_detection = true;
     }
     
+    if (argc >= 5) {
+        start_frame = atoi(argv[4]);
+    }
+    
+    if (argc >= 6) {
+        end_frame = atoi(argv[5]);
+    }
+    
+    cout << start_frame << " " <<end_frame <<endl;
     
     /*
      Components initializtion
@@ -52,7 +68,7 @@ int main (int argc, const char * argv[])
     /*
      Loading input video(feature detection included)
      */
-    myFrames->loadVideo(input_video);
+    myFrames->loadVideo(input_video, start_frame , end_frame);
     cout << "Frames : " << myFrames->frame_count << endl;
     
     /*

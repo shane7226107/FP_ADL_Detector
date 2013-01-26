@@ -1,7 +1,7 @@
-/*Library for running system calls*/
+/*Module for running system calls*/
 var exec = require('child_process').exec;
 
-/*Library for http server*/
+/*Module for http server*/
 var server,
     ip   = "127.0.0.1",
     port = 8888,
@@ -9,20 +9,29 @@ var server,
     url = require('url'),
     path;
 
+/*Module of file system*/
+var page_file_index = require("fs"),
+    encode = "utf8",
+    filePath = "static/index.html";
+
 /*Creating http server*/
 server = http.createServer(function (req, res) {
   path = url.parse(req.url);
 
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  
   switch (path.pathname) {
     case "/index":
-      res.end('I am index.\n');
+      page_file_index.readFile(filePath, encode, function(err, file) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(file);
+        res.end();
+      });
       break;
     case "/test":
+      res.writeHead(200, {'Content-Type': 'text/plain'});
       run_ADL(res);
       break;
     default:
+      res.writeHead(200, {'Content-Type': 'text/plain'});
       res.end('default page.\n');
       break;
   }

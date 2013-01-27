@@ -48,17 +48,29 @@ YUI.add('myMojit', function(Y, NAME) {
                 params_for_adl = null;
 
             function run_ADL(param){
-                var result = "nothing";
+                var result = "nothing",
+                    index = -1,
+                    tmp = null;
 
                 console.log('running_ADL...');
 
                 exec(param, 
                     function (error, stdout, stderr) {
 
-                        console.log(stdout);
+                        index = stdout.toString().indexOf("CRF++:");
+
+                        if( index > 1 ){
+                            result = stdout.toString().slice(index);
+                            tmp = result.split("\t");
+                            console.log(tmp);
+                            result = tmp[1];
+                        }else{
+                            result = "failed to make adl detection";
+                        }
+
                         ac.done({
                             status: 'Good',
-                            data: stdout
+                            data: result
                         });
                         
                         if (error !== null) {
@@ -81,13 +93,7 @@ YUI.add('myMojit', function(Y, NAME) {
                              show_result + " " +
                              show_pause + " " +
                              params.start + " " +
-                             params.end;
-            /*
-            ac.done({
-                                status: 'good',
-                                data: params_for_adl
-                            });
-            */               
+                             params.end;             
             run_ADL(params_for_adl);
         }
 

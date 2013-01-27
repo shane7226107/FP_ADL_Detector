@@ -29,14 +29,30 @@ YUI.add('myMojit', function(Y, NAME) {
          *        to the Mojito API.
          */
         index: function(ac) {
-            var exec = require('child_process').exec;
 
-            function run_ADL(callback){
+            console.log('Index');
+            ac.done({
+                        status: 'Good',
+                        data: 'Welcome'
+                    });
+                       
+        },
+
+        ADL: function(ac){
+            /*Declaration*/
+            var exec = require('child_process').exec,
+                params = ac.params.getFromUrl(),
+                run_crf = params.run_crf || "false",
+                show_result = params.show_result || "false",
+                show_pause = params.show_pause || "false",
+                params_for_adl = null;
+
+            function run_ADL(param){
                 var result = "nothing";
 
                 console.log('running_ADL...');
 
-                exec('~/Documents/CMLab/Master/FP_ADL_Detector/DerivedData/FP_ADL_Detector/Build/Products/Debug/FP_ADL_Detector ~/Desktop/ADL_videos/by_hand/raw_video/beverage/1.mp4 show crf 550 650', 
+                exec(param, 
                     function (error, stdout, stderr) {
 
                         console.log(stdout);
@@ -56,9 +72,25 @@ YUI.add('myMojit', function(Y, NAME) {
                     });  
             }
 
-            /*process*/
-            run_ADL();            
+            /*Processing*/
+            console.log("\n\n\n" + params.video + "\n\n\n");
+            
+            params_for_adl = "~/Documents/CMLab/Master/FP_ADL_Detector/DerivedData/FP_ADL_Detector/Build/Products/Debug/FP_ADL_Detector " + 
+                             "~/Desktop/ADL_VIDEOS_FOR_Mojito/"+ params.video + " " + 
+                             run_crf + " " +
+                             show_result + " " +
+                             show_pause + " " +
+                             params.start + " " +
+                             params.end;
+            /*
+            ac.done({
+                                status: 'good',
+                                data: params_for_adl
+                            });
+            */               
+            run_ADL(params_for_adl);
         }
+
 
     };
 

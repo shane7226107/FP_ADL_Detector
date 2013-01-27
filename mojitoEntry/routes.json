@@ -4,6 +4,11 @@
       "verbs": ["get"],
       "path": "/",
       "call": "page.index"
+    },
+    "ADL": {
+      "verbs": ["get"],
+      "path": "/adl*",
+      "call": "page.ADL"
     }
 
 }]

@@ -14,10 +14,11 @@ int main (int argc, const char * argv[])
     /*
      Input arguments checking
      argv[1] : video path
-     argv[2] : [show]show detection result , [show_pause]show detection and pause when detected
-     argv[3] : [crf]run CRF++ for activity recognition
-     argv[4] : start frame
-     argv[5] : end frame
+     argv[2] : [crf]run CRF++ for activity recognition
+     argv[3] : [show]show detection result 
+     argv[4] : [pause]show detection and pause when detected
+     argv[5] : start frame
+     argv[6] : end frame
      */
     
     if (argv[1] == NULL){
@@ -34,27 +35,33 @@ int main (int argc, const char * argv[])
     
     cout  << "input video:" << input_video << endl;
     
-    if (argc >= 3) {
-        show_detection_result  = true;
+    if (argc >= 2) {
         string tmp;
         tmp.assign(argv[2]);
-        if(tmp.compare("show_pause") == 0)
-            pause_when_detected = true;
-    }
-    
-    if (argc >= 4) {
-        string tmp;
-        tmp.assign(argv[3]);
         if(tmp.compare("crf") == 0)
             do_activity_detection = true;
     }
     
+    if (argc >= 3) {
+        string tmp;
+        tmp.assign(argv[3]);
+        if(tmp.compare("show") == 0)
+            show_detection_result  = true;
+    }
+    
+    if (argc >= 4) {
+        string tmp;
+        tmp.assign(argv[4]);
+        if(tmp.compare("pause") == 0)
+            pause_when_detected = true;
+    }
+    
     if (argc >= 5) {
-        start_frame = atoi(argv[4]);
+        start_frame = atoi(argv[5]);
     }
     
     if (argc >= 6) {
-        end_frame = atoi(argv[5]);
+        end_frame = atoi(argv[6]);
     }
     
     cout << start_frame << " " <<end_frame <<endl;

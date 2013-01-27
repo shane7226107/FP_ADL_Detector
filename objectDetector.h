@@ -17,7 +17,7 @@
 
 #define MAX_DETECTION_BOX 1000
 #define MIN_DETECTION_BOX 200
-#define HAAR_PATH "../DerivedData/FP_ADL_Detector/Build/Products/Debug/"
+#define HAAR_PATH "../../DerivedData/FP_ADL_Detector/Build/Products/Debug/"
 
 using namespace std;
 

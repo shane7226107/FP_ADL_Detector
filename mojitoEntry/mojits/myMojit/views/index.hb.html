@@ -1,10 +1,17 @@
 <div id="{{mojit_view_id}}">
-	<h1>Index</h1>
-    <dl>
-        <dt>status</dt>
-        <dd id="dd_status">{{status}}</dd>
+	<h1>ADL Detector Entry</h1>
 
-        <dt>status</dt>
-        <dd id="dd_status">{{data}}</dd>
-    </dl>    
+    <form name="input" action="/adl" method="get">
+
+    <font>Choose a video:</font><input type="file" name="video" value="video"><br>
+	<font>Start Frame:</font><input type="text" name="start">
+	<font>End Frame:</font><input type="text" name="end">
+	<br>
+	<input type="checkbox" name="run_crf" value="crf">Run CRF<br>
+	<font>Display:</font><br>
+	<input type="checkbox" name="show_result" value="show">object detection<br>
+	<input type="checkbox" name="show_pause" value="pause">Pause when object detected<br>
+	<input type="submit" value="Submit">
+
+	</form>  
 </div>

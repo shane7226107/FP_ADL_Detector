@@ -185,7 +185,7 @@ bool TemporalPyramid::activity_detect(FrameModel *frames){
     ifstream myfile("crf/result.txt");
     if (myfile.is_open())
     {   
-        cout << "Reading reulst from CRF++\n";
+        cout << "Reading result from CRF++\n";
         while ( myfile.good() )
         {
             getline (myfile,line);
@@ -197,13 +197,8 @@ bool TemporalPyramid::activity_detect(FrameModel *frames){
         cout << "Unable to open file";
     }
     
-    /*
-    for (int i  = 0 ;  i < tmp.size() ; i ++) {
-        cout << tmp[i] << endl;
-    }
-    */
     
-    cout << "Resu from CRF++:" << tmp[tmp.size() - 3 ] << endl;
+    cout << "Result from CRF++:" << tmp[tmp.size() - 3 ] << endl;
     
     myfile.close();
     return true;
